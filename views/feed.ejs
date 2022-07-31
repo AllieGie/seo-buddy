@@ -1,0 +1,25 @@
+<%- include('partials/header') -%>
+  
+<div class="container">
+  <div class="row mt-5">
+    <div class="col">
+      <ul class="row list-unstyled">
+        <% for(var i=0; i<projectss.length; i++) {%>
+          <li class="col-12 mt-5">
+            <p><strong>Project Name:</strong>: <%= projects[i].projectName%></p>
+            <a href="/post/<%= posts[i]._id%>">
+              <p><%= projects[i]%>"></p>
+            </a>
+          </li>
+        <% } %>
+        </ul>
+    </div>
+    <div class="col col-md-2 justify-content-end align-items-end">
+        <a href="/projects" class="text-decoration-none fw-bold text-dark"><p> <%= project.projectName %></p></a>
+        <a href="/logout" class="col-7 btn btn-secondary">Logout</a>
+    </div>
+  </div>
+</div>
+
+
+<%- include('partials/footer') -%>
