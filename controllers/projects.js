@@ -1,18 +1,19 @@
 const Project = require("../models/Project");
 const Note = require('../models/Note');
+const Project = require("../models/Project");
 
 module.exports = {
   getProjects: async (req, res) => {
     try {
-      const projects = await Project.find({ user: req.user.id });
-      res.render("projects.ejs", { projects: projectItems, user: req.user });
+      const Project = await Project.find({ user: req.user.id });
+      res.render("project.ejs", { projects: projectItems, user: req.user });
     } catch (err) {
       console.log(err);
     }
   },
   getAssignee: async (req, res) => {
     try {
-      const projects = await Post.find().sort({ assignedTo: "desc" }).lean();
+      const Project = await Project.find().sort({ assignedTo: "desc" }).lean();
       res.render("assignee.ejs", { projects: projectItems, user: req.user });
     } catch (err) {
       console.log(err);
@@ -20,8 +21,8 @@ module.exports = {
   },
   getProject: async (req, res) => {
     try {
-      const projects = await Project.findById(req.params.id);
-      const notes = await Note.find({ post: req.params.id });
+      const Project = await Project.findById(req.params.id);
+      const Note = await Note.find({ post: req.params.id });
       res.render("project.ejs", { projects: projectItems, user: req.user, notes: note});
     } catch (err) {
       console.log(err);
@@ -32,7 +33,7 @@ module.exports = {
       // Upload image to cloudinary
     //   const result = await cloudinary.uploader.upload(req.file.path);
 
-      await Projects.create({
+      await Project.create({
         projectName: req.body.projectName,
         assignee: req.body.assignee,
         // image: result.secure_url,
@@ -66,7 +67,7 @@ module.exports = {
   deleteProject: async (req, res) => {
     try {
       // Find post by id
-      let project = await Project.findById({ _id: req.params.id });
+      let Project = await Project.findById({ _id: req.params.id });
       // Delete image from cloudinary
     //   await cloudinary.uploader.destroy(post.cloudinaryId);
       // Delete post from db
