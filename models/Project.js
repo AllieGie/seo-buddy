@@ -24,7 +24,7 @@ const ProjectSchema = new mongoose.Schema({
   },
   notes: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Comment",
+    ref: "Note",
   },
   createdAt: {
     type: Date,
