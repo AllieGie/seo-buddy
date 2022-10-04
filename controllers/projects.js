@@ -1,12 +1,12 @@
 const Project = require("../models/Project");
-const Note = require('../models/Note');
-const Project = require("../models/Project");
+const Note = require("../models/Note");
+
 
 module.exports = {
-  getProjects: async (req, res) => {
+  getDashboard: async (req, res) => {
     try {
-      const Project = await Project.find({ user: req.user.id });
-      res.render("project.ejs", { projects: projectItems, user: req.user });
+      const project = await Project.find({ user: req.user.id });
+      res.render("dashboard.ejs", { project: project, user: req.user });
     } catch (err) {
       console.log(err);
     }
@@ -14,16 +14,16 @@ module.exports = {
   getAssignee: async (req, res) => {
     try {
       const Project = await Project.find().sort({ assignedTo: "desc" }).lean();
-      res.render("assignee.ejs", { projects: projectItems, user: req.user });
+      res.render("assignee.ejs", { project: project, user: req.user });
     } catch (err) {
       console.log(err);
     }
   },
   getProject: async (req, res) => {
     try {
-      const Project = await Project.findById(req.params.id);
-      const Note = await Note.find({ post: req.params.id });
-      res.render("project.ejs", { projects: projectItems, user: req.user, notes: note});
+      const project = await Project.findById(req.params.id);
+      const note = await Note.find({ project: req.params.id });
+      res.render("project.ejs", { project: project, user: req.user, notes: Note});
     } catch (err) {
       console.log(err);
     }
