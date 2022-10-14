@@ -1,7 +1,7 @@
 const passport = require("passport");
 const validator = require("validator");
-const Project = require("../models/Project");
-const User = require('../models/User')
+const Project = require('../models/Project');
+const User = require('../models/User');
 
 
 exports.getLogin = (req, res) => {
@@ -65,6 +65,7 @@ exports.getSignup = (req, res) => {
   }
   res.render("signup", {
     title: "Create Account",
+    user: req.user,
   });
 };
 
@@ -87,10 +88,13 @@ exports.postSignup = (req, res, next) => {
     gmail_remove_dots: false,
   });
 
+  // this is what we want to add all user information to (get the request.body(body is coming from the form))
+  // form, schema and signup should all have the same property names
   const user = new User({
     userName: req.body.userName,
     email: req.body.email,
     password: req.body.password,
+    assignee: req.body.assignee
   });
 
   User.findOne(
@@ -117,5 +121,15 @@ exports.postSignup = (req, res, next) => {
         });
       });
     });
+  
+  exports.getProfile = async (req, res) => {
+      if (req.user) {
+        const getProfile = await Project.find({ assignee: Project.assignee });
+        return res.render('/profile', { project: Project, assignee: project.assignee });
+      }
+      res.render('signup', {
+        title: 'Create Account'
+      })
+    }
 };
 
