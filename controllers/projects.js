@@ -1,5 +1,6 @@
 const Project = require("../models/Project");
-const Note = require("../models/Note");
+ 
+
 
 
 module.exports = {
@@ -11,41 +12,39 @@ module.exports = {
       console.log(err);
     }
   },
+  getProjects: async (req, res) => {
+    try {
+      const projects = await Project.find().sort({ createdAt: "desc" }).lean();
+      res.render("project.ejs", { projects: projects, user: req.user});
+    } catch (err) { 
+      console.log(err);
+    }
+  },
   getAssignee: async (req, res) => {
     try {
-      const Project = await Project.find().sort({ assignedTo: "desc" }).lean();
-      res.render("assignee.ejs", { project: project, user: req.user });
+      const project = await Project.find().sort({ assignedTo: "desc" }).lean();
+      res.render("assignee.ejs", { project: project, assignee: project.assignee });
+      console.log(req.body)
     } catch (err) {
       console.log(err);
-    }
+    } 
   },
-  getProject: async (req, res) => {
+  createProject: async (req, res) => { 
     try {
-      const project = await Project.findById(req.params.id);
-      const note = await Note.find({ project: req.params.id });
-      res.render("project.ejs", { project: project, user: req.user, notes: Note});
-    } catch (err) {
-      console.log(err);
-    }
-  },
-  createProject: async (req, res) => {
-    try {
-      // Upload image to cloudinary
-    //   const result = await cloudinary.uploader.upload(req.file.path);
+      const newProject = req.body;
 
-      await Project.create({
-        projectName: req.body.projectName,
-        assignee: req.body.assignee,
-        // image: result.secure_url,
-        // cloudinaryId: result.public_id,
-        task: req.body.task,
-        tags: 0,
-        dueDate: req.body.dueDate,
+
+     console.log( await Project.create ({
+        projectName: newProject.projectName,
+        taskName: newProject.taskName,
+        assignee: newProject.assignee,
         user: req.user.id,
-        // userName: req.user.userName
-      });
+        notes: newProject.notes,
+        createdAt: newProject.createdAt,
+        dueDate: newProject.dueDate,      
+      }));
       console.log("Project has been added!");
-      res.redirect("/projects");
+      res.redirect("/projects"); 
     } catch (err) {
       console.log(err);
     }
@@ -66,11 +65,11 @@ module.exports = {
 //   },
   deleteProject: async (req, res) => {
     try {
-      // Find post by id
+      // Find project by id
       let Project = await Project.findById({ _id: req.params.id });
       // Delete image from cloudinary
     //   await cloudinary.uploader.destroy(post.cloudinaryId);
-      // Delete post from db
+      // Delete project from db
       await Project.remove({ _id: req.params.id });
       console.log("Deleted Project");
       res.redirect("/projects");
