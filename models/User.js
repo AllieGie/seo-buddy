@@ -1,10 +1,12 @@
 const bcrypt = require('bcrypt')
 const mongoose = require('mongoose')
+const { array } = require('../middleware/multer')
 
 const UserSchema = new mongoose.Schema({
   userName: { type: String, unique: true },
   email: { type: String, unique: true },
-  password: String
+  password: String,
+  assignee: String, 
 })
 
 
