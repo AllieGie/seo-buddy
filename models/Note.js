@@ -13,14 +13,19 @@ const NoteSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "project",
     },
+    projectName: {
+        type: String,
+        required: true,
+    },
+    assignee: {
+        type: String,
+        required: true,
+      },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
     },
-    userName: {
-        type: String,
-        required: true
-    },
+    
     createdAt: {
         type: Date,
         default: Date.now,
