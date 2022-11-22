@@ -60,6 +60,8 @@ app.use("/", mainRoutes);
 app.use("dashboard", dashboardRoutes);
 app.use("/projects", projectsRoutes);
 app.use("notes", notesRoutes);
+app.use("/profile", projectsRoutes); 
+app.use("/addAssignees", dashboardRoutes); 
 
 //Server Running
 app.listen(process.env.PORT, () => {
