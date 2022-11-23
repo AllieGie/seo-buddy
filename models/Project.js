@@ -9,7 +9,7 @@ const ProjectSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  tags: {
+  assignee: {
     type: String,
     required: true,
   },
@@ -18,13 +18,8 @@ const ProjectSchema = new mongoose.Schema({
     ref: mongoose.Schema.Types.ObjectId,
     // ref: "User",
   },
-  userName: {
-    type: String,
-    required: true
-  },
   notes: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Note",
+    type: String,
   },
   createdAt: {
     type: Date,
@@ -33,7 +28,7 @@ const ProjectSchema = new mongoose.Schema({
   dueDate: {
     type: Date,
     default: Date,
-      },
+    },
 });
 
 module.exports = mongoose.model("Project", ProjectSchema);
