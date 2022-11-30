@@ -1,57 +1,80 @@
-<%- include('partials/header') -%>
+<%- include('partials/logged-in-nav') -%>
+<div class="container">
+  
 
-  <div class="container">
-    <div class="row justify-content-center mt-5">
-      <div class='col-md-6'>
-        <div class="card m-3">
-          <img class="card-top" src='<%= project.p%>'>
-          <div class="card-body">
-            <h6 class="card-subtitle text-muted mb-2">
-              Owner: <%=project.userName%>
-            </h6>
-            <h2 class="card-title">
-              <%= project.projectName %>
-            </h2>
-            <p class="card-text">
-              <%= project.dueDate %>
-            </p>
-          </div>
-          <div class="card-footer d-flex justify-content-between align-items-center">
-            <form class="" action="/project<%= project.id %>?_method=PUT" method="POST">
-              <button class="btn btn-primary fa fa-heart" type="submit"></button>
-            </form>
-            <p class="card-text text-muted mb-0">Likes: <%= post.likes %>
-            </p>
-            <%if(project.user==user.id){ %>
-              <form action="/post/deleteProject/<%= project.id %>?_method=DELETE" method="POST"
-                class="d-flex justify-content-end">
-                <button class="btn btn-primary fa fa-trash" type="submit"></button>
-              </form>
-              <%}%>
-          </div>
+   <!-- Button trigger modal -->
+   <div class="col-3">
+   <button type="button" class="btn btn-dark m-5" data-bs-toggle="modal" data-bs-target="#exampleModal">New Project</button>
+  </div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New Project</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="/projects/createProject" method="POST">
+            <div class="mb-3">
+                <label for="projectName" class="form-label">Project Name</label>
+                <input type="text" class="form-control" id="projectName" name="projectName">
+            </div>
+            <div class="mb-3">
+              <label for="task" class="form-label">Task Name</label>
+              <textarea class="form-control" id="taskName" name="taskName"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="assignee" class="form-label">Assigned To:</label>
+              <textarea class="form-control" id="assignee" name="assignee"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="notes" class="form-label">Notes</label>
+              <textarea class="form-control" id="notes" name="notes"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="Date" class="form-label">Due Date</label>
+              <input type="date" class="form-control" id="Date" name="dueDate" value="date">
+            </div>
+            <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+          </form>
+        </div>
+        <div class="modal-footer">
         </div>
       </div>
-      <div class="col-md-6 my-4">
-        <h5>Notes:</h5>
-        <div class="card-group flex-column">
-          <% Notes.forEach(Notes=> { %>
-            <div class="card my-2 p-3">
-              <h6 class="card-subtitle text-muted">
-                <%= task.userName %> says:
-              </h6>
-              <p class="card-text">
-                <%= Notes.Notes %>
-              </p>
-            </div>
-            <% }) %>
-              <div class="card my-2 p-3">
-                <h5 class="card-title">Add a Note:</h5>
+    </div>
+  </div>
+</div>
+</div>
 
-                <!-- <form action="/comments/createComment/<%= post.id %>" method="POST">
-                  <div class="mb-3">
-                    <label for="comment" class="form-label">Comment</label>
-                    <input type="text" class="form-control" id="comment" name="comment">
-                         <input type="hidden" name="post" value="<%= post._id %>">
-                  </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </form> -->
+<!-- Projects  -->
+  <div class="row mt-0">
+    <div class="col">
+      <ul class="row list-unstyled">
+        <% for(var i=0; i<projects.length; i++) {%>
+          <li class="col-6 justify-content-between mt-5">
+            <div class="card ms-4">
+              <ul class="list-group">
+                <li class="list-group-item" id="projectName"><strong>Project Name: </strong><%= projects[i].projectName%></li>
+                <li class="list-group-item" id="taskName"><strong>Task Name: </strong><%= projects[i].taskName%>  </li>
+                <li class="list-group-item" id="assignee"><strong>Assigned To: </strong> <a href="/assignee" class="text-decoration-none fw-bold text-primary"><p> <%= projects[i].assignee%></p></a> </li>
+                <li class="list-group-item" id="notes"><strong>Notes: </strong><%= projects[i].notes%> </li>
+                <li class="list-group-item" id="date"><strong>Due: </strong> <%= projects[i].dueDate%></li>
+              </ul> 
+            </div>
+  
+          </li>
+          <% } %>
+      </ul>
+    </div>
+  </div> 
+    <div class="col col-md-2 justify-content-end align-items-end">
+        <a href="/profile" class="text-decoration-none fw-bold text-dark"><p> <%= user.userName %></p></a>
+        <a href="/logout" class="col-7 btn btn-secondary">Logout</a>
+    </div>
+  </div>
+</div>
+</div>
+<%- include('partials/footer') -%>
+
