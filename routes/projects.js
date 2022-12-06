@@ -4,7 +4,7 @@ const upload = require("../middleware/multer");
 const projectsController = require("../controllers/projects"); 
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
-//Post Routes - simplified for now
+//Project Routes - simplified for now
 router.get("/:id", ensureAuth, projectsController.getProjects);
 router.get("/:id", ensureAuth, projectsController.getAssignee); 
 
