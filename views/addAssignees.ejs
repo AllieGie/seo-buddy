@@ -1,0 +1,52 @@
+<%- include('partials/logged-in-nav') -%>
+<div class="col mt-3">
+  <!-- <div class="d-flex flex-row p-2"> -->
+      
+<div class="container mt-0">
+  <div class="row mt-0">
+    <div class="col">
+      <ul class="row list-unstyled">
+        <% for(var i=0; i<assignee.length; i++) {%>
+          <li class="col-6 justify-content-between mt-5">
+            <div class="card ms-4">
+              <ul class="list-group">
+                <li class="list-group-item" id="assignee"><strong>Assigned To: </strong> <a href="/addedAssignees/<%= assignee[i]._id%>" class="text-decoration-none fw-bold text-primary"><p> <%= assignee[i].assignee%></p></a> </li>
+            <!-- <a href="/addedAssignees/<%= assignee[i]._id%>">
+              <p class=list-group-item" src="<%= assignee[i].addedassignee%>">
+            </a>
+          </li> -->
+        </ul>
+        <% } %>
+        </ul>
+    </div>
+  </div>
+    <div class="row mt-0">
+        <div class="col">
+          <ul class="row list-unstyled">
+            <% for(var i=0; i<assignee.length; i++) {%>
+              <li class="col-6 justify-content-between mt-5">
+                <div class="card ms-4">
+                  <ul class="list-group">
+                    <li class="list-group-item" id="assignee"><strong>Assigned To: </strong> <a href="/assignee" class="text-decoration-none fw-bold text-primary"><p> <%= assignee[i].assignee%></p></a> </li>
+                  </ul> 
+                </div>
+      
+              </li>
+              <% } %>
+          </ul>
+        </div>
+      </div> 
+
+
+
+    <div class="col col-md-2 justify-content-end align-items-end">
+        <a href="/assignee" class="text-decoration-none fw-bold text-dark"><p> <%= assignee.assignee %></p></a>
+        <a href="/logout" class="col-7 btn btn-secondary">Logout</a>
+    </div>
+  </div> 
+</div>
+</div>
+<%- include('partials/footer') -%>
+
+<!-- Need to grab the assignee Id number and push them into an array. Then a card needs to be created for every item in the array that includes all the information 
+from that card -->
