@@ -1,25 +1,50 @@
-<%- include('partials/header') -%>
-  
-<div class="container">
+<%- include('partials/logged-in-nav') -%>
+<main>
+
+<!-- <div class="container">
+  <div class="col mt-3">
+    <div class="d-flex flex-row p-2"> -->
+      <!-- <div class="col">
+        <a class="text-secondary mx-5" href="/projects">Projects</a>
+        <a class="text-secondary ms-2" href="/assignee">Team Members</a>
+      </div>
+      <div class="row-2 mt-0"> -->
+        
+        <form action="/addAssignees" method="POST">
+         <div class="ms-5 me-5">
+            <label for="assignee" class="form-label">Add New Team Member</label>
+            <textarea class="form-control" id="assignee" name="assignee">Name</textarea>
+          </div>
+          <button type="submit" class="btn btn-primary ms-5 me-5" value="Upload">Submit</button>
+        </form>
+
   <div class="row mt-5">
     <div class="col">
-      <ul class="row list-unstyled">
-        <% for(var i=0; i<projectss.length; i++) {%>
-          <li class="col-12 mt-5">
-            <p><strong>Project Name:</strong>: <%= projects[i].projectName%></p>
-            <a href="/post/<%= posts[i]._id%>">
-              <p><%= projects[i]%>"></p>
+      <ul class="row list-group">
+        <% for(var i=0; i<project.length; i++) {%>
+          <li class="col-6 mt-5">
+
+            <div class="card ms-4 style=width: 7rem">
+              <ul class="list-group">
+                <li class="list-group-item" id="projectName"><strong>Project Name: </strong> <%= project[i].projectName%> </li>
+                <li class="list-group-item" id="date"> <strong>Due Date: </strong> <%= project[i].dueDate%></li>
+              </ul>
+            </div>
+            <!-- <p><strong>Project Name</strong>: <%= project[i].projectName%></p>
+            <a href="/project/<%= project[i]._id%>">
+              <p><%= project[i]%> </p>
             </a>
           </li>
         <% } %>
         </ul>
     </div>
     <div class="col col-md-2 justify-content-end align-items-end">
-        <a href="/projects" class="text-decoration-none fw-bold text-dark"><p> <%= project.projectName %></p></a>
-        <a href="/logout" class="col-7 btn btn-secondary">Logout</a>
-    </div>
+        <a href="/project" class="text-decoration-none fw-bold text-dark"><p> <%= project.projectName %></p></a>
+    </div> -->
   </div>
 </div>
 
 
+
+</main>
 <%- include('partials/footer') -%>
