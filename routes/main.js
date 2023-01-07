@@ -15,8 +15,9 @@ router.get("/signup", authController.getSignup);
 router.post("/signup", authController.postSignup);
 router.get("/dashboard", ensureAuth, projectsController.getDashboard)
 router.get("/projects", ensureAuth, projectsController.getProjects);
-router.get("/assignee", ensureAuth, projectsController.getAssignee);
-router.get("/assignees", ensureAuth, projectsController.getAssignee); 
-router.post("/addAssignees", ensureAuth, dashboardController.postAssignee);    
+router.post("/projects/createProject", ensureAuth, projectsController.createProject)
+router.get("/teamMembers", ensureAuth, projectsController.getMembers);
+router.get("/teamMembers/:id", ensureAuth, projectsController.getMembers); 
+router.post("/teamMembers", ensureAuth, dashboardController.postTeamMembers);    
 
 module.exports = router;

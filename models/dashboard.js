@@ -18,7 +18,7 @@ const ProjectsSchema = new mongoose.Schema({
     type: Date,
     default: Date,
   },
-  assignee: {
+  teamMembers: {
     type: String,
     required: true
   }

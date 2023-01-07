@@ -17,7 +17,7 @@ const NoteSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    assignee: {
+    teamMembers: {
         type: String,
         required: true,
       },

@@ -5,8 +5,8 @@ const projectsController = require("../controllers/projects");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 //Project Routes - simplified for now
-router.get("/:id", ensureAuth, projectsController.getProjects);
-router.get("/:id", ensureAuth, projectsController.getAssignee); 
+router.get("/teamMembers/:id", ensureAuth, projectsController.getProjects);
+router.get("/teamMembers/:id", ensureAuth, projectsController.getMembers); 
 
 router.post("/createProject", ensureAuth, projectsController.createProject);
 

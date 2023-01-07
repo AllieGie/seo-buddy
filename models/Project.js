@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { array } = require("../middleware/multer");
 
 const ProjectSchema = new mongoose.Schema({
   projectName: {
@@ -9,8 +10,8 @@ const ProjectSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  assignee: {
-    type: String,
+  teamMembers: {
+    type: String, //this needs to be an array. Find out how to reference in array that has its own collection in the db 
     required: true,
   },
   user: {
