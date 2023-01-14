@@ -6,14 +6,14 @@
     <div class="d-flex flex-row p-2"> -->
       <!-- <div class="col">
         <a class="text-secondary mx-5" href="/projects">Projects</a>
-        <a class="text-secondary ms-2" href="/assignee">Team Members</a>
+        <a class="text-secondary ms-2" href="/teamMembers">Team Members</a>
       </div>
       <div class="row-2 mt-0"> -->
         
-        <form action="/addAssignees" method="POST">
+        <form action="/teamMembers" method="POST">
          <div class="ms-5 me-5">
-            <label for="assignee" class="form-label">Add New Team Member</label>
-            <textarea class="form-control" id="assignee" name="assignee">Name</textarea>
+            <label for="teamMembers" class="form-label">Add New Team Member</label>
+            <textarea class="form-control" id="teamMembers" name="teamMember" placeholder="Name"></textarea>
           </div>
           <button type="submit" class="btn btn-primary ms-5 me-5" value="Upload">Submit</button>
         </form>

@@ -1,4 +1,5 @@
 const Project = require("../models/Project");
+const TeamMembers = require("../models/TeamMembers");
  
 
 
@@ -7,23 +8,25 @@ module.exports = {
   getDashboard: async (req, res) => {
     try {
       const project = await Project.find({ user: req.user.id });
-      res.render("dashboard.ejs", { project: project, user: req.user });
+      res.render("dashboard.ejs", { project: project, user: req.user }); // this object has the data you can access in this particular page
     } catch (err) {
       console.log(err);
     }
   },
   getProjects: async (req, res) => {
     try {
-      const projects = await Project.find().sort({ createdAt: "desc" }).lean();
-      res.render("project.ejs", { projects: projects, user: req.user});
+      const projects = await Project.find().sort({ user: "desc" }).lean();
+      res.render("project.ejs", { projects: projects, user: req.user, teamMembers: projects.teamMember});// projects in white is just the varibale name. the text in purpe is 
     } catch (err) { 
       console.log(err);
     }
   },
-  getAssignee: async (req, res) => {
+  getMembers: async (req, res) => {
     try {
-      const project = await Project.find().sort({ assignedTo: "desc" }).lean();
-      res.render("assignee.ejs", { project: project, assignee: project.assignee });
+      const teamMembers = await TeamMembers.find({ teamLead: req.user.id }).toArray()
+      console.log('this is req.user.id', req.user.id)
+      console.log('this went through', teamMembers)
+      res.render("teamMembers.ejs", {  teamMembers:'' });
       console.log(req.body)
     } catch (err) {
       console.log(err);
@@ -34,10 +37,10 @@ module.exports = {
       const newProject = req.body;
 
 
-     console.log( await Project.create ({
+     console.log( await Project.create({
         projectName: newProject.projectName,
         taskName: newProject.taskName,
-        assignee: newProject.assignee,
+        teamMember: newProject.teamMember,
         user: req.user.id,
         notes: newProject.notes,
         createdAt: newProject.createdAt,

@@ -61,7 +61,7 @@ exports.logout = (req, res) => {
 
 exports.getSignup = (req, res) => {
   if (req.user) {
-    return res.redirect("../signup");
+    return res.redirect("/dashboard");
   }
   res.render("signup", {
     title: "Create Account",
@@ -94,7 +94,7 @@ exports.postSignup = (req, res, next) => {
     userName: req.body.userName,
     email: req.body.email,
     password: req.body.password,
-    assignee: req.body.assignee
+    teamMembers: req.body.teamMembers
   });
 
   User.findOne(
@@ -124,8 +124,8 @@ exports.postSignup = (req, res, next) => {
   
   exports.getProfile = async (req, res) => {
       if (req.user) {
-        const getProfile = await Project.find({ assignee: Project.assignee });
-        return res.render('/profile', { project: Project, assignee: project.assignee });
+        const getProfile = await Project.find({ teamMembers: Project.teamMembers });
+        return res.render('/profile', { project: Project, teamMembers: project.teamMembers });
       }
       res.render('signup', {
         title: 'Create Account'

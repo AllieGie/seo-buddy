@@ -57,11 +57,11 @@ app.use(flash());
 
 //Setup Routes For Which The Server Is Listening
 app.use("/", mainRoutes);
-app.use("dashboard", dashboardRoutes);
-app.use("/projects", projectsRoutes);
-app.use("notes", notesRoutes);
-app.use("/profile", projectsRoutes); 
-app.use("/addAssignees", dashboardRoutes); 
+app.use("/dashboard", dashboardRoutes);
+app.use("dashboard/projects", projectsRoutes);
+app.use("dashboard/notes", notesRoutes);
+app.use("/teamMembers/:id", projectsRoutes); 
+app.use("dashboard/addteamMembers", dashboardRoutes); 
 
 //Server Running
 app.listen(process.env.PORT, () => {

@@ -6,13 +6,13 @@
   <div class="row mt-0">
     <div class="col">
       <ul class="row list-unstyled">
-        <% for(var i=0; i<assignee.length; i++) {%>
+        <% for(var i=0; i<teamMembers.length; i++) {%>
           <li class="col-6 justify-content-between mt-5">
             <div class="card ms-4">
               <ul class="list-group">
-                <li class="list-group-item" id="assignee"><strong>Assigned To: </strong> <a href="/addedAssignees/<%= assignee[i]._id%>" class="text-decoration-none fw-bold text-primary"><p> <%= assignee[i].assignee%></p></a> </li>
-            <!-- <a href="/addedAssignees/<%= assignee[i]._id%>">
-              <p class=list-group-item" src="<%= assignee[i].addedassignee%>">
+                <li class="list-group-item" id="teamMembers"><strong>Assigned To: </strong> <a href="/addedteamMemberss/<%= teamMembers[i]._id%>" class="text-decoration-none fw-bold text-primary"><p> <%= teamMembers[i].teamMembers%></p></a> </li>
+            <!-- <a href="/addedteamMemberss/<%= teamMembers[i]._id%>">
+              <p class=list-group-item" src="<%= teamMembers[i].addedteamMembers%>">
             </a>
           </li> -->
         </ul>
@@ -23,11 +23,11 @@
     <div class="row mt-0">
         <div class="col">
           <ul class="row list-unstyled">
-            <% for(var i=0; i<assignee.length; i++) {%>
+            <% for(var i=0; i<teamMembers.length; i++) {%>
               <li class="col-6 justify-content-between mt-5">
                 <div class="card ms-4">
                   <ul class="list-group">
-                    <li class="list-group-item" id="assignee"><strong>Assigned To: </strong> <a href="/assignee" class="text-decoration-none fw-bold text-primary"><p> <%= assignee[i].assignee%></p></a> </li>
+                    <li class="list-group-item" id="teamMembers"><strong>Assigned To: </strong> <a href="/teamMembers" class="text-decoration-none fw-bold text-primary"><p> <%= teamMembers[i].teamMembers%></p></a> </li>
                   </ul> 
                 </div>
       
@@ -40,7 +40,7 @@
 
 
     <div class="col col-md-2 justify-content-end align-items-end">
-        <a href="/assignee" class="text-decoration-none fw-bold text-dark"><p> <%= assignee.assignee %></p></a>
+        <a href="/teamMembers" class="text-decoration-none fw-bold text-dark"><p> <%= teamMembers.teamMembers %></p></a>
         <a href="/logout" class="col-7 btn btn-secondary">Logout</a>
     </div>
   </div> 
@@ -48,5 +48,5 @@
 </div>
 <%- include('partials/footer') -%>
 
-<!-- Need to grab the assignee Id number and push them into an array. Then a card needs to be created for every item in the array that includes all the information 
+<!-- Need to grab the teamMembers Id number and push them into an array. Then a card needs to be created for every item in the array that includes all the information 
 from that card -->
