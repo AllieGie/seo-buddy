@@ -1,4 +1,5 @@
 const Project = require("../models/Project");
+const TeamMembers = require("../models/TeamMembers");
 const TeamMember = require("../models/TeamMembers");
  
 
@@ -23,10 +24,11 @@ module.exports = {
   },
   getMembers: async (req, res) => {
     try {
-      const teamMembers = await TeamMember.find({ teamLead: req.user.id });
+      const teamMembers = await TeamMembers.find({ teamLead: req.user.id });
       console.log('this is req.user.id', req.user.id)
       console.log('this went through', teamMembers)
-      res.render("teamMembers.ejs", {  teamMembers:'' });
+      res.render("teamMembers.ejs", { teamMembers: teamMembers, user: req.user });
+      console.log(teamMembers.length)
       console.log(req.body)
     } catch (err) {
       console.log(err);
