@@ -16,7 +16,7 @@ module.exports = {
         name: teamMemberDetails.teamMember,
         teamLead: req.user._id
       })
-      res.render("teamMembers.ejs", { members: addedteamMembers, teamMembers: [addedteamMembers.teamMembers] });
+      res.render("teamMembers.ejs", { members: addedteamMembers._id});
       console.log("team-member added")
       
     } catch (err) {
@@ -27,10 +27,10 @@ module.exports = {
     try {
       // const project = await Project.find().sort({ teamMembers: "desc" }).lean();
       // we create this object that gets sent to teamembers.ejs so that the info can be accessed
-      const teamMembers = await TeamMember.find({ teamLead: req.user.id }).toArray()
+      const teamMembers = await TeamMember.find({ teamLead: req.user.id })
       console.log('this is req.user.id', req.user.id)
       console.log('this went through', teamMembers)
-      res.render("teamMembers.ejs", {  teamMembers:'' });
+      res.render("teamMembers.ejs", {  teamMembers: teamMembers, user: req.user });
       console.log(req.body)
     } catch (err) { 
       console.log(err);
