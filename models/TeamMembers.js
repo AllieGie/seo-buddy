@@ -16,5 +16,5 @@ const TeamMemberSchema = new mongoose.Schema({
 //will want to add more details to this. Think abt what those details will be. wages, project Names. 
 
 
-module.exports = mongoose.model("TeamMember", TeamMemberSchema);
+module.exports = mongoose.model("TeamMembers", TeamMemberSchema);
 // 

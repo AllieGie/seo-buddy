@@ -28,9 +28,9 @@
               <label for="teamMembers" class="form-label">Team member</label>
               <br>
               <select name="teamMember" id="teamMembers" placeholder="Name"> 
-                <% var options = []; %>
-                <% for(var i=0; i <projects.length; i++) {%>
-                  <option value='<%= i %>'> <%=i%> </option>
+                <% let options = []; %>
+                <% for(let i=0; i<teamMembers.length; i++) {%>
+                  <option value='<%= teamMembers[i].name %>'> <%= teamMembers[i].name%> </option>
                 <% } %>
               </select>
             </div>
@@ -63,7 +63,7 @@
               <ul class="list-group">
                 <li class="list-group-item" id="projectName"><strong>Project Name: </strong><%= projects[i].projectName%></li>
                 <li class="list-group-item" id="taskName"><strong>Task Name: </strong><%= projects[i].taskName%>  </li>
-                <li class="list-group-item" id="teamMembers"><strong>Assigned: </strong> <a href="/teamMembers/<%= projects[i]._id%>" class="text-decoration-none fw-bold text-primary"><p> <%= projects[i].teamMember%></p></a> </li>
+                <li class="list-group-item" id="teamMembers"><strong>Assigned: </strong> <a href="/teamMembers/<%= teamMembers[i]._id%>" class="text-decoration-none fw-bold text-primary"><p> <%= teamMembers[i].name%> </p></a> </li>
                 <li class="list-group-item" id="notes"><strong>Notes: </strong><%= projects[i].notes%> </li>
                 <li class="list-group-item" id="date"><strong>Due: </strong> <%= projects[i].dueDate%></li>
               </ul> 
