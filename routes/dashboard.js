@@ -8,7 +8,7 @@ const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 router.get("/dashboard", ensureAuth, projectsController.getDashboard)
 router.get("/:id", ensureAuth, projectsController.getProjects);
-router.get("/dashboard", ensureAuth, projectsController.getMembers); 
+router.get("/teamMembers", ensureAuth, projectsController.getMembers); 
 router.post("/dashboard", ensureAuth, dashboardController.postTeamMembers); 
 
 
