@@ -17,7 +17,7 @@ module.exports = {
   getProjects: async (req, res) => {
     try {
       const projects = await Project.find().sort({ user: "desc" }).lean();
-      res.render("project.ejs", { projects: projects, user: req.user, teamMembers: projects.teamMember});// projects in white is just the varibale name. the text in purpe is 
+      res.render("project.ejs", { projectsFromCollection: projects, user: req.user});// projects in white is just the varibale name. the text in purpe is 
     } catch (err) { 
       console.log(err);
     }
@@ -40,7 +40,8 @@ module.exports = {
 
 
      console.log( await Project.create({
-        projectName: newProject.projectName,
+       projectName: newProject.projectName,
+      //  teamMemberId: newProject.memberId,
         taskName: newProject.taskName,
         teamMember: newProject.teamMember,
         user: req.user.id,
