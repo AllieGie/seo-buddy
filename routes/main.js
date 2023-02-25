@@ -18,7 +18,7 @@ router.get("/dashboard", ensureAuth, projectsController.getDashboard)
 router.get("/projects", ensureAuth, projectsController.getProjects);
 router.post("/projects/createProject", ensureAuth, projectsController.createProject)
 router.get("/teamMembers", ensureAuth, projectsController.getMembers);
-router.get("/profile", ensureAuth, profileController.getProfile)
+router.get("/profile/:id", ensureAuth, profileController.getProfile)
 // create a new function in Profile controller, 
 router.get("/teamMembers/:id", ensureAuth, projectsController.getMembers); 
 router.post("/teamMembers", ensureAuth, dashboardController.postTeamMembers);    
