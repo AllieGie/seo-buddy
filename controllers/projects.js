@@ -9,7 +9,7 @@ module.exports = {
   getDashboard: async (req, res) => {
     try {
       const project = await Project.find({ user: req.user.id });
-      res.render("dashboard.ejs", { project: project, user: req.user }); // this object has the data you can access in this particular page
+      res.render("dashboard.ejs", { projectsFromCollection: project, user: req.user }); // this object has the data you can access in this particular page
     } catch (err) {
       console.log(err);
     }
