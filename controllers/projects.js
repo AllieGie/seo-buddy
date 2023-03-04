@@ -27,7 +27,7 @@ module.exports = {
       const teamMembers = await TeamMembers.find({ teamLead: req.user.id });
       console.log('this is req.user.id', req.user.id)
       console.log('this went through', teamMembers)
-      res.render("teamMembers.ejs", { teamMembers: teamMembers, user: req.user });
+      res.render("teamMembers.ejs", { teamMembersFromCollection: teamMembers, user: req.user });
       console.log(teamMembers.length)
       console.log(req.body)
     } catch (err) {
