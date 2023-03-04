@@ -8,10 +8,10 @@
   <div class="row mt-0">
     <div class="col">
       <ul class="row list-unstyled">
-        <% for(let i=0; i<teamMembers.length; i++) {%>
+        <% for(let i=0; i<teamMembersFromCollection.length; i++) {%>
           <li class="col-6 justify-content-between mt-5">
-            <a href="/teamMembers/<%= teamMembers[i]._id%>">
-              <p> <%= teamMembers[i].name%> </p>
+            <a href="/profile/<%= teamMembersFromCollection[i]._id%>">
+              <p> <%= teamMembersFromCollection[i].name%> </p>
             </a>
           </li>
         <% } %>
