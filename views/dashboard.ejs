@@ -21,25 +21,19 @@
   <div class="row mt-5">
     <div class="col">
       <ul class="row list-group">
-        <% for(var i=0; i<project.length; i++) {%>
+        <% for(var i=0; i<projectsFromCollection.length; i++) {%>
           <li class="col-6 mt-5">
 
             <div class="card ms-4 style=width: 7rem">
               <ul class="list-group">
-                <li class="list-group-item" id="projectName"><strong>Project Name: </strong> <%= project[i].projectName%> </li>
-                <li class="list-group-item" id="date"> <strong>Due Date: </strong> <%= project[i].dueDate%></li>
+                <li class="list-group-item" id="projectName"><strong>Project Name: </strong> <%= projectsFromCollection[i].projectName%> </li>
+                <li class="list-group-item" id="date"> <strong>Due Date: </strong> <%= projectsFromCollection[i].dueDate%></li>
               </ul>
-            </div>
-            <!-- <p><strong>Project Name</strong>: <%= project[i].projectName%></p>
-            <a href="/project/<%= project[i]._id%>">
-              <p><%= project[i]%> </p>
-            </a>
-          </li>
+            </div>    
         <% } %>
-        </ul>
     </div>
     <div class="col col-md-2 justify-content-end align-items-end">
-        <a href="/project" class="text-decoration-none fw-bold text-dark"><p> <%= project.projectName %></p></a>
+        <a href="/project" class="text-decoration-none fw-bold text-dark"><p> <%= projectsFromCollection.projectName %></p></a>
     </div> -->
   </div>
 </div>
