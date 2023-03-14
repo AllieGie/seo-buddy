@@ -8,8 +8,12 @@ const TeamMember = require("../models/TeamMembers");
 module.exports = {
     getProfile: async (req, res) => {
         try {
-            const memberProfile = await Project.find({ project: _id });
-            res.render("profile.ejs", { project: projectName, task: taskName, notes: notes, created: createdAt, due: dueDate}); // this object has the data you can access in this particular page
+            // const memberProfile = await TeamMembers.find({teamMembers:teamMemberData }) 
+            const projects = await Project.find({ teamMemberId: req.params.id}) // 
+            console.log('coming through', projects )
+            // console.log('checking', memberProfile)
+            res.render("profile.ejs", { memberProjectsFromCollection: projects, teamMemberId: req.params.id}); // this object has the data you can access in this particular page
+            console.log(req.body)
         } catch (err) {
             console.log(err);
         }
