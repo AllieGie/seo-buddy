@@ -14,13 +14,11 @@ const projectsRoutes = require("./routes/projects");
 const notesRoutes = require("./routes/notes")
 
 //Use .env file in config folder
-require("dotenv").config({ path: "./config/.env" });
+require("dotenv").config({ path: "./config/.env"});
 
 // Passport config
 require("./config/passport")(passport);
 
-//Connect To Database
-connectDB();
 
 //Using EJS for views
 app.set("view engine", "ejs");
@@ -57,13 +55,15 @@ app.use(flash());
 
 //Setup Routes For Which The Server Is Listening
 app.use("/", mainRoutes);
-app.use("dashboard", dashboardRoutes);
-app.use("/projects", projectsRoutes);
-app.use("notes", notesRoutes);
-app.use("/profile", projectsRoutes); 
-app.use("/addAssignees", dashboardRoutes); 
+app.use("/dashboard", dashboardRoutes);
+app.use("dashboard/projects", projectsRoutes);
+app.use("dashboard/notes", notesRoutes);
+app.use("/teamMembers/:id", projectsRoutes); 
+app.use("dashboard/addteamMembers", dashboardRoutes); 
 
-//Server Running
-app.listen(process.env.PORT, () => {
-  console.log(`Server is running on ${process.env.PORT}, you better catch it!`);
+//Connecting to Database and Staring Server/Running
+connectDB().then(() => {
+  app.listen(process.env.PORT, () => {
+    console.log(`Server is running on ${process.env.PORT}, you better catch it!`);
+  })
 });
