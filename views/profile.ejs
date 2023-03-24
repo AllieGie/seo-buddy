@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<%- include('partials/logged-in-nav') -%>
+<div class="container">
+
+<div class="row mt-0">
+    <div class="col">
+      <ul class="row list-unstyled">
+        <% for(var i=0; i<memberProjectsFromCollection.length; i++) {%>
+          <li class="col-6 justify-content-between mt-5">
+            <div class="card ms-4">
+              <ul class="list-group">
+                <li class="list-group-item" id="projectName"><strong>Project Name: </strong><%= memberProjectsFromCollection[i].projectName%></li>
+                <li class="list-group-item" id="taskName"><strong>Task Name: </strong><%= memberProjectsFromCollection[i].taskName%>  </li>
+                <li class="list-group-item" id="teamMembers"><strong>Assigned: </strong> <p> <%= memberProjectsFromCollection[i].teamMembers%> </p></a> </li>
+                <li class="list-group-item" id="notes"><strong>Notes: </strong><%= memberProjectsFromCollection[i].notes%> </li>
+                <li class="list-group-item" id="date"><strong>Due: </strong> <%= memberProjectsFromCollection[i].dueDate%></li>
+              </ul> 
+            </div>  
+          </li>
+          <% } %>
+      </ul>
+    </div>
+
+</div>
+</div>
+<%- include('partials/footer') -%>
