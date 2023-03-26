@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <%- include('partials/logged-in-nav') -%>
 <div class="container">
 
@@ -24,14 +25,15 @@
               <label for="task" class="form-label">Task Name</label>
               <textarea class="form-control" id="taskName" name="taskName"></textarea>
             </div>
+
             <div class="mb-3">
               <label for="teamMembers" class="form-label">Team member</label>
               <br>
               <select name="teamMember" id="teamMembers" placeholder="Name"> 
                 <% let options = []; %>
-                <% for(let i=0; i<projectsFromCollection.length; i++) {%>
-                  <option value='<%= projectsFromCollection[i].assignee %>'> <%= projectsFromCollection[i].assignee%> </option>
-                <% } %>
+                <% for(let i=0; i<allTeamMembersFromCollection.length; i++) {%>        
+                  <option value='<%= JSON.stringify([allTeamMembersFromCollection[i]._id, allTeamMembersFromCollection[i].name])  %>' > <%= allTeamMembersFromCollection[i].name %> </option>
+                  <% } %>
               </select>
             </div>
             <div class="mb-3">
@@ -54,16 +56,16 @@
 </div>
 
 <!-- Projects  -->
-  <div class="row mt-0">
-    <div class="col">
+  <div class="row mt-0 ">
+    <div class="col ps-3">
       <ul class="row list-unstyled">
         <% for(var i=0; i<projectsFromCollection.length; i++) {%>
           <li class="col-6 justify-content-between mt-5">
-            <div class="card ms-4">
+            <div class="card ms-5 mb-5">
               <ul class="list-group">
                 <li class="list-group-item" id="projectName"><strong>Project Name: </strong><%= projectsFromCollection[i].projectName%></li>
                 <li class="list-group-item" id="taskName"><strong>Task Name: </strong><%= projectsFromCollection[i].taskName%>  </li>
-                <li class="list-group-item" id="teamMembers"><strong>Assigned: </strong> <p> <%= projectsFromCollection[i].assignee%> </p></a> </li>
+                <li class="list-group-item" id="teamMembers"><strong>Assigned: </strong> <p> <%= projectsFromCollection[i].teamMembers%> </p></a> </li>
                 <li class="list-group-item" id="notes"><strong>Notes: </strong><%= projectsFromCollection[i].notes%> </li>
                 <li class="list-group-item" id="date"><strong>Due: </strong> <%= projectsFromCollection[i].dueDate%></li>
               </ul> 
