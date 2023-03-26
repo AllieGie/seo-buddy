@@ -1,9 +1,5 @@
 const Project = require("../models/Project");
 const TeamMembers = require("../models/TeamMembers");
-const TeamMember = require("../models/TeamMembers");
- 
-
-
 
 module.exports = {
   getDashboard: async (req, res) => {
@@ -17,7 +13,9 @@ module.exports = {
   getProjects: async (req, res) => {
     try {
       const projects = await Project.find().sort({ user: "desc" }).lean();
-      res.render("project.ejs", { projectsFromCollection: projects, user: req.user});// projects in white is just the varibale name. the text in purpe is 
+      const allTeamMembers = await TeamMembers.find()
+      console.log(allTeamMembers[0].name, allTeamMembers[0]._id)
+      res.render("project.ejs", { projectsFromCollection: projects, user: req.user, allTeamMembersFromCollection: allTeamMembers});// projects in white is just the varibale name. the text in purpe is 
     } catch (err) { 
       console.log(err);
     }
@@ -37,13 +35,15 @@ module.exports = {
   createProject: async (req, res) => { 
     try {
       const newProject = req.body;
-
-
+      console.log('this line works', req.body)
+      const teamMemberData = JSON.parse(newProject.teamMember)
+      console.log()
+     
      console.log( await Project.create({
-       projectName: newProject.projectName,
-      //  teamMemberId: newProject.memberId,
+        projectName: newProject.projectName,
+        teamMemberId: teamMemberData[0],
         taskName: newProject.taskName,
-        teamMember: newProject.teamMember,
+        teamMembers: teamMemberData[1],
         user: req.user.id,
         notes: newProject.notes,
         createdAt: newProject.createdAt,
@@ -73,8 +73,7 @@ module.exports = {
     try {
       // Find project by id
       let Project = await Project.findById({ _id: req.params.id });
-      // Delete image from cloudinary
-    //   await cloudinary.uploader.destroy(post.cloudinaryId);
+  
       // Delete project from db
       await Project.remove({ _id: req.params.id });
       console.log("Deleted Project");

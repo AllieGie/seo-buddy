@@ -1,19 +1,19 @@
+<!DOCTYPE html>
 <%- include('partials/logged-in-nav') -%>
 <main>
 
 <!-- <div class="container">
   <div class="col mt-3">
     <div class="d-flex flex-row p-2"> -->
-      <!-- <div class="col">
-        <a class="text-secondary mx-5" href="/projects">Projects</a>
-        <a class="text-secondary ms-2" href="/teamMembers">Team Members</a>
+      <div class="col-8 d-inline-flex ms-5 mt-0">
+        <h3 class="fw-bold text-dark">Welcome <%= user.userName %> </h3>
       </div>
-      <div class="row-2 mt-0"> -->
-        
+      <div class="row-2 mt-0">
+    
         <form action="/teamMembers" method="POST">
-         <div class="ms-5 me-5">
+         <div class=" ms-5 me-5">
             <label for="teamMembers" class="form-label">Add New Team Member</label>
-            <textarea class="form-control" id="teamMembers" name="teamMember" placeholder="Name"></textarea>
+            <textarea class="form-control w-25" id="teamMembers" cols="3" name="teamMember" placeholder="Name"></textarea>
           </div>
           <button type="submit" class="btn btn-primary ms-5 me-5" value="Upload">Submit</button>
         </form>
@@ -24,7 +24,7 @@
         <% for(var i=0; i<projectsFromCollection.length; i++) {%>
           <li class="col-6 mt-5">
 
-            <div class="card ms-4 style=width: 7rem">
+            <div class="card ms-5 mb-5 style=width: 7rem">
               <ul class="list-group">
                 <li class="list-group-item" id="projectName"><strong>Project Name: </strong> <%= projectsFromCollection[i].projectName%> </li>
                 <li class="list-group-item" id="date"> <strong>Due Date: </strong> <%= projectsFromCollection[i].dueDate%></li>
@@ -34,7 +34,7 @@
     </div>
     <div class="col col-md-2 justify-content-end align-items-end">
         <a href="/project" class="text-decoration-none fw-bold text-dark"><p> <%= projectsFromCollection.projectName %></p></a>
-    </div> -->
+    </div>
   </div>
 </div>
 
