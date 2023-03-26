@@ -1,10 +1,14 @@
 const mongoose = require("mongoose");
-const { array } = require("../middleware/multer");
+
 
 const ProjectSchema = new mongoose.Schema({
   projectName: {
     type: String,
     required: true,
+  },
+  teamMemberId: {
+    type: String,
+    required: true
   },
   taskName: {
     type: String,
