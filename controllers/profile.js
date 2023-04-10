@@ -12,8 +12,7 @@ module.exports = {
             const projects = await Project.find({ teamMemberId: req.params.id}) // 
             console.log('coming through', projects )
             // console.log('checking', memberProfile)
-            res.render("profile.ejs", { memberProjectsFromCollection: projects, teamMemberId: req.params.id}); // this object has the data you can access in this particular page
-            console.log(req.body)
+            res.render("profile.ejs", { memberProjectsFromCollection: projects, teamMemberId: req.params.id}); // this object has the data you can access in this particular page 
         } catch (err) {
             console.log(err);
         }

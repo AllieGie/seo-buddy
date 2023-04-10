@@ -9,7 +9,6 @@
         <h3 class="fw-bold text-dark">Welcome <%= user.userName %> </h3>
       </div>
       <div class="row-2 mt-0">
-    
         <form action="/teamMembers" method="POST">
          <div class=" ms-5 me-5">
             <label for="teamMembers" class="form-label">Add New Team Member</label>
@@ -23,7 +22,6 @@
       <ul class="row list-group">
         <% for(var i=0; i<projectsFromCollection.length; i++) {%>
           <li class="col-6 mt-5">
-
             <div class="card ms-5 mb-5 style=width: 7rem">
               <ul class="list-group">
                 <li class="list-group-item" id="projectName"><strong>Project Name: </strong> <%= projectsFromCollection[i].projectName%> </li>

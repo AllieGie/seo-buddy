@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+let date = new Date(); 
 
 const ProjectSchema = new mongoose.Schema({
   projectName: {
@@ -31,8 +32,7 @@ const ProjectSchema = new mongoose.Schema({
     default: Date.now,
     },
   dueDate: {
-    type: Date,
-    default: Date,
+    type: String,
     },
 });
 
