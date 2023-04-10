@@ -1,6 +1,7 @@
 const Project = require("../models/Project");
 const TeamMembers = require("../models/TeamMembers");
 
+//controlle\\\\\
 module.exports = {
   getDashboard: async (req, res) => {
     try {
@@ -39,6 +40,7 @@ module.exports = {
       const teamMemberData = JSON.parse(newProject.teamMember)
       console.log()
      
+      let date = new Date(newProject.dueDate); // using the JS date constructor here. It takes in a string date and then applies its methods to that. We're passing in the due date being collected in the 
      console.log( await Project.create({
         projectName: newProject.projectName,
         teamMemberId: teamMemberData[0],
@@ -47,7 +49,7 @@ module.exports = {
         user: req.user.id,
         notes: newProject.notes,
         createdAt: newProject.createdAt,
-        dueDate: newProject.dueDate,      
+        dueDate: date.toDateString() // taking the date variablel which is capturing the date constructor without formating and then formats it to make it readable. 
       }));
       console.log("Project has been added!");
       res.redirect("/projects"); 
