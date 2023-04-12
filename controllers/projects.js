@@ -13,7 +13,8 @@ module.exports = {
   },
   getProjects: async (req, res) => {
     try {
-      const projects = await Project.find().sort({ user: "desc" }).lean();
+
+      const projects = await Project.find({user: req.params.id}).sort({ user: "desc" }).lean();
       const allTeamMembers = await TeamMembers.find()
       console.log(allTeamMembers[0].name, allTeamMembers[0]._id)
       res.render("project.ejs", { projectsFromCollection: projects, user: req.user, allTeamMembersFromCollection: allTeamMembers});// projects in white is just the varibale name. the text in purpe is 
